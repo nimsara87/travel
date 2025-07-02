@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderWise Travel - Intelligent Wanderlust</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0077BE 0%, #FF6B35 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .loader-container {
+            text-align: center;
+            color: white;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-list {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .page-list h3 {
+            color: white;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .page-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .page-list li {
+            margin: 8px 0;
+        }
+        
+        .page-list a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .page-list a:hover {
+            color: white;
+        }
+    </style>
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fwanderwise2397back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="logo">WanderWise</div>
+        <div class="tagline">Where Wanderlust Meets Wisdom</div>
+        <div class="spinner"></div>
+    </div>
+    
+    <div class="page-list">
+        <h3>Available Pages:</h3>
+        <ul>
+            <li><a href="pages/homepage.html">Homepage</a></li>
+            <li><a href="pages/destination_discovery.html">Destination Discovery</a></li>
+            <li><a href="pages/experience_collections.html">Experience Collections</a></li>
+            <li><a href="pages/travel_stories_blog.html">Travel Stories Blog</a></li>
+            <li><a href="pages/personal_travel_dashboard.html">Personal Travel Dashboard</a></li>
+            <li><a href="pages/community_hub.html">Community Hub</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Auto-redirect to homepage after 3 seconds
+        setTimeout(function() {
+            window.location.href = 'pages/homepage.html';
+        }, 3000);
+        
+        // Allow manual navigation by clicking on page links
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageLinks = document.querySelectorAll('.page-list a');
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    
+                    // Add a smooth transition effect
+                    document.body.style.opacity = '0';
+                    document.body.style.transition = 'opacity 0.3s ease-out';
+                    
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                });
+            });
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const pages = [
+                'pages/homepage.html',
+                'pages/destination_discovery.html',
+                'pages/experience_collections.html',
+                'pages/travel_stories_blog.html',
+                'pages/personal_travel_dashboard.html',
+                'pages/community_hub.html'
+            ];
+            
+            if (e.key >= '1' && e.key <= '6') {
+                const pageIndex = parseInt(e.key) - 1;
+                if (pages[pageIndex]) {
+                    window.location.href = pages[pageIndex];
+                }
+            }
+        });
+    </script>
+</body>
+</html>
